@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--buttons-->
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissors">Scissors</button>
+    <!--info-->
+    <h2>Your Choice: <span id="your-choice">Rock</span></h2>
+    <h2>Computers Choice: <span id="computers-choice">Rock</span></h2>
+    <h2>Results: <span id="results">Tie</span></h2>
+
+    <script>
+    //add functionality to buttons
+    const rockBtn = document.getElementById("rock") 
+    const paperBtn = document.getElementById("paper")
+    const scissorsBtn = document.getElementById("scissors")
+
+    //add events when buttons are clicked
+    let options = ["rock", "paper", "scissors"] 
+
+    rockBtn.addEventListener("click", () => {
+        playGame(options[0])
+        //console.log("rock")
+    })
+    paperBtn.addEventListener("click", () => {
+        playGame(options[1])
+        //console.log("paper")
+    })
+    scissorsBtn.addEventListener("click", () => {
+        playGame(options[2])
+        //console.log("scissors")
+    })
+
+    //add a function that handles game play
+    function playGame(optionSelected) {
+        //console.log(optionSelected)
+
+        //get your choice and change the span that displays your choice
+        document.getElementById("your-choice").innerHTML = optionSelected
+
+        //get computers choice and change the span that displays computer choice
+        let computerChoice = options[Math.floor(Math.random()* options.length)]
+        document.getElementById("computers-choice").innerHTML = computerChoice
+
+        //get results and display them in the results span.
+        if (optionSelected === computerChoice) {
+            document.getElementById("results").innerHTML = "Its a Tie!"
+        } else if (optionSelected === "paper" && computerChoice === "rock" 
+        || optionSelected === "scissors" && computerChoice === "paper" 
+        || optionSelected === "rock" && computerChoice === "scissors") {
+            document.getElementById("results").innerHTML = "You Win!!"
+        } else {
+            document.getElementById("results").innerHTML = "Computer Wins"
+        }
+
+    }
+    </script>
+
+</body>
+</html>
